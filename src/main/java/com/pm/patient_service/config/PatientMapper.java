@@ -27,15 +27,16 @@ public interface PatientMapper {
     })
     Patient toEntity(PatientRequestDTO dto);
 
-    // Helper: Convert String to LocalDate
-    @Named("stringToLocalDate")
-    default LocalDate stringToLocalDate(String date) {
-        return LocalDate.parse(date); // ISO format: "yyyy-MM-dd"
-    }
-
-
     @Named("uuidToString")
     default String uuidToString(UUID uuid) {
         return uuid != null ? uuid.toString() : null;
     }
+
+    // Optional: reverse for string → LocalDate
+    @Named("stringToLocalDate")
+    default LocalDate stringToLocalDate(String date) {
+        return LocalDate.parse(date); // ISO format
+    }
+
+
 }

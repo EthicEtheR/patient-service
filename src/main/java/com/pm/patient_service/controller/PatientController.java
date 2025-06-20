@@ -1,11 +1,9 @@
 package com.pm.patient_service.controller;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
 import com.pm.patient_service.dto.PatientRequestDTO;
 import com.pm.patient_service.dto.PatientResponseDTO;
 import com.pm.patient_service.dto.validators.CreatePatientValidationGroup;
 import com.pm.patient_service.service.PatientService;
-import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,9 +16,13 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
-@RequiredArgsConstructor
+
 public class PatientController {
     private final PatientService patientService;
+
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @GetMapping
     public ResponseEntity<List<PatientResponseDTO>> getAllPatients(){
